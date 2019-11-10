@@ -77,6 +77,6 @@ virtualenv==16.7.3
 w3lib==1.19.0
 websockets==7.0
 weixin-python==0.5.5
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 wrapt==1.11.1
 xmljson==0.2.0
