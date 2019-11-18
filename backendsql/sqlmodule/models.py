@@ -2,6 +2,29 @@ from django.db import models
 
 # Create your models here.
 
+class Album(models.Model):
+    name = models.CharField(max_length=45, blank=True, null=True)
+    sort = models.IntegerField(blank=True, null=True)
+    created_at = models.DateTimeField(blank=True, null=True)
+    updated_at = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'album'
+
+class Picture(models.Model):
+    album = models.ForeignKey(Album, on_delete=models.PROTECT, related_name="as_album")
+    path = models.CharField(max_length=512, blank=True, null=True)
+    size = models.CharField(max_length=45, blank=True, null=True)
+    width = models.CharField(max_length=45, blank=True, null=True)
+    height = models.CharField(max_length=45, blank=True, null=True)
+    created_at = models.DateTimeField(blank=True, null=True)
+    updated_at = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'picture'
+
 class Goods(models.Model):
     name = models.CharField(max_length=256)
     category_id = models.IntegerField(blank=True, null=True)
@@ -15,6 +38,7 @@ class Goods(models.Model):
     base_click = models.IntegerField(blank=True, null=True)
     base_share = models.IntegerField(blank=True, null=True)
     product_code = models.CharField(max_length=128, blank=True, null=True)
+    picture = models.ForeignKey(Picture, on_delete=models.PROTECT, related_name="as_picture")
     starttime = models.DateField(blank=True, null=True)
     validity_period = models.IntegerField(blank=True, null=True)
     inventory = models.IntegerField(blank=True, null=True)
@@ -76,19 +100,6 @@ class GoodsCategory(models.Model):
         managed = False
         db_table = 'goods_category'
 
-
-class GoodsPic(models.Model):
-    album_id = models.IntegerField()
-    path = models.CharField(max_length=512, blank=True, null=True)
-    size = models.CharField(max_length=45, blank=True, null=True)
-    width = models.CharField(max_length=45, blank=True, null=True)
-    height = models.CharField(max_length=45, blank=True, null=True)
-    created_at = models.DateTimeField(blank=True, null=True)
-    updated_at = models.DateTimeField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'goods_pic'
 
 
 class GoodsSku(models.Model):
@@ -164,3 +175,7 @@ class GoodsType(models.Model):
     class Meta:
         managed = False
         db_table = 'goods_type'
+
+
+
+
