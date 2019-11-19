@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'sqlmodule'
+    'good',
 ]
 
 MIDDLEWARE = [
@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'backendsql.wsgi.application'
 DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'littlemall_base',
+        'NAME': 'littlemall',
         'USER': 'root',
         'PASSWORD': '12345678',
         'HOST': '127.0.0.1',
