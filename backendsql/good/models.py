@@ -41,7 +41,7 @@ class Goods(models.Model):
     type_id = models.IntegerField(blank=True, null=True)
     media = models.CharField(max_length=256, blank=True, null=True)
     detail = models.TextField(blank=True, null=True)
-    status = models.IntegerField(blank=True, null=True)
+    status = models.IntegerField(blank=True, null=True,default=0)
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
 
