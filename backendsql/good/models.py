@@ -37,7 +37,7 @@ class Goods(models.Model):
     inventory_warn = models.IntegerField(blank=True, null=True)
     place = models.CharField(max_length=256, blank=True, null=True)
     sku_ids = models.CharField(max_length=512, blank=True, null=True)
-    photo = models.CharField(max_length=256, blank=True, null=True)
+    photo = models.CharField(max_length=2048, blank=True, null=True)
     type_id = models.IntegerField(blank=True, null=True)
     media = models.CharField(max_length=256, blank=True, null=True)
     detail = models.TextField(blank=True, null=True)
