@@ -70,21 +70,18 @@ class GoodsCategory(models.Model):
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
 
-
-
-
 class GoodsSku(models.Model):
-    goods_id = models.IntegerField()
-    name = models.CharField(max_length=128)
-    attr_values_items = models.CharField(max_length=256, blank=True, null=True)
+    goods = models.ForeignKey(Goods, on_delete=models.PROTECT, related_name="as_good",null=True)
+    name = models.CharField(max_length=512,null=True)
+    attr_values_items = models.CharField(max_length=512, blank=True, null=True)
     market_price = models.DecimalField(max_digits=10, decimal_places=0)
     price = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
     promote_price = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
     cost_price = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
-    stock = models.IntegerField()
-    photo = models.CharField(max_length=256, blank=True, null=True)
+    stock = models.IntegerField(blank=True, null=True)
+    photo = models.CharField(max_length=512, blank=True, null=True)
     detail = models.TextField(blank=True, null=True)
-    code = models.CharField(max_length=256, blank=True, null=True)
+    code = models.CharField(max_length=128, blank=True, null=True)
     status = models.IntegerField(blank=True, null=True)
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)

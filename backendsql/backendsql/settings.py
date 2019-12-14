@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'littlemall',
         'USER': 'root',
         'PASSWORD': '12345678',
-        'HOST': '127.0.0.1',
+        'HOST': '10.18.120.228',
         'OPTIONS': {'charset': 'utf8mb4'},  # if we need some emojis
     }
 }
