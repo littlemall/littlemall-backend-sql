@@ -71,7 +71,7 @@ class GoodsCategory(models.Model):
     updated_at = models.DateTimeField(blank=True, null=True)
 
 class GoodsSku(models.Model):
-    goods = models.ForeignKey(Goods, on_delete=models.PROTECT, related_name="as_good",null=True)
+    goods = models.OneToOneField(Goods, on_delete=models.PROTECT, related_name="as_good",null=True)
     name = models.CharField(max_length=512,null=True)
     attr_values_items = models.CharField(max_length=512, blank=True, null=True)
     market_price = models.DecimalField(max_digits=10, decimal_places=0)
