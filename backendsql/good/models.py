@@ -19,7 +19,7 @@ class GoodsPic(models.Model):
 
 class Goods(models.Model):
     name = models.CharField(max_length=256)
-    category_id = models.IntegerField(blank=True, null=True)
+    category_id = models.CharField(max_length=256,blank=True, null=True)
     promotion = models.CharField(max_length=256, blank=True, null=True)
     keyword = models.CharField(max_length=256, blank=True, null=True)
     unit = models.CharField(max_length=45, blank=True, null=True)
