@@ -61,6 +61,7 @@ class GoodsCategory(models.Model):
     pid = models.IntegerField(blank=True, null=True)
     name = models.CharField(max_length=128, blank=True, null=True)
     name_simple = models.CharField(max_length=128, blank=True, null=True)
+    level = models.IntegerField(blank=True, null=True)
     goods_type = models.IntegerField(blank=True, null=True)
     is_show = models.SmallIntegerField(blank=True, null=True)
     sort = models.IntegerField(blank=True, null=True)
