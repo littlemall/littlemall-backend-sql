@@ -58,6 +58,7 @@ class GoodsBrand(models.Model):
 
 
 class GoodsCategory(models.Model):
+    oid = models.IntegerField(blank=True, null=True,unique=True)
     pid = models.IntegerField(blank=True, null=True)
     name = models.CharField(max_length=128, blank=True, null=True)
     name_simple = models.CharField(max_length=128, blank=True, null=True)
@@ -65,6 +66,7 @@ class GoodsCategory(models.Model):
     goods_type = models.IntegerField(blank=True, null=True)
     is_show = models.SmallIntegerField(blank=True, null=True)
     sort = models.IntegerField(blank=True, null=True)
+    oriphoto = models.CharField(max_length=256, blank=True, null=True)
     photo = models.CharField(max_length=256, blank=True, null=True)
     keyword = models.CharField(max_length=45, blank=True, null=True)
     desc = models.CharField(max_length=256, blank=True, null=True)
