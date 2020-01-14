@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Feuser(models.Model):
   name = models.CharField(max_length=100)
-  email = models.CharField(max_length=100)
+  email = models.CharField(max_length=100,unique=True)
   password =  models.CharField(max_length=100)
   avator =  models.CharField(max_length=2048)
   gender =  models.IntegerField(default=0)

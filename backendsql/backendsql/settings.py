@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -126,3 +127,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# 密码秘钥
+PASSWORD_JWT_KEY = 'v6nSX5BPPZQ2bewzo4JdxJeaQgFBXyIG'
+# token 秘钥
+APP_SH_SECRET_KEY = '0UBjDCZUIasS+n/o/wbBF/TrOjhiHe1ZK7Ntwa0GFMCHWl9imX0'
+
