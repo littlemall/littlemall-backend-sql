@@ -53,7 +53,7 @@ class LoginView(APIView):
 
       return Result(200,'success',{})
     except Exception as e:
-      return Result(500,'error',e)
+      return Result(500,'error',str(e))
 
 
 class RegisterView(APIView):
@@ -78,7 +78,7 @@ class RegisterView(APIView):
           )
       return Result(200,'success',{})
     except Exception as e:
-      return Result(500,'error',e)
+      return Result(500,'error',str(e))
 
 class PasswordView(APIView):
   permission_classes = (AuTokenPermission,)
@@ -97,7 +97,7 @@ class PasswordView(APIView):
         )
         return Result(200,'success',{})
     except Exception as e:
-      return Result(500,'error',e)
+      return Result(500,'error',str(e))
     
 class AddressAddView(APIView):
   permission_classes = (AuTokenPermission,)
@@ -131,7 +131,7 @@ class AddressAddView(APIView):
         )
         return Result(200,'success',{})
     except Exception as e:
-      return Result(500,'error',e)
+      return Result(500,'error',str(e))
 
   def get(self, request, format=None):
     try:
@@ -168,7 +168,7 @@ class AddressAddView(APIView):
           "list": res,
         })
     except Exception as e:
-      return Result(500,'error',e)
+      return Result(500,'error',str(e))
 
 class AddressUpdateView(APIView):
   permission_classes = (AuTokenPermission,)
@@ -203,7 +203,7 @@ class AddressUpdateView(APIView):
         )
         return Result(200,'success',{})
     except Exception as e:
-      return Result(500,'error',e)
+      return Result(500,'error',str(e))
     
 
       
