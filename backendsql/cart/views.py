@@ -21,8 +21,7 @@ class CartAddView(APIView):
   def post(self, request, format=None):
     try:
       goods = request.data.get("goods", None)
-      address_id = request.data.get("address_id", None)
-      if(goods is None or address_id is None):
+      if goods is None:
         return Result(500,'参数错误',e)
       else:
         goods_list = json.loads(goods)
@@ -30,30 +29,20 @@ class CartAddView(APIView):
         print(goods_list[0]["name"])
         for o in goods_list:
           price = price + int(o['price'])
-        feAddressObj = FeAddress.objects.filter(
-          user=request.user,
-          id = address_id,
-        )
         fecart = Fecart.objects.filter(
           user=request.user,
         )
         if(len(fecart) > 0):
           return Result(10020,'本用户已存在购物车，不能新增购物车',{})
         else:
-          print(goods)
-          if(len(feAddressObj) > 0):
-            feAddress = feAddressObj.get()
-            Fecart.objects.create(
-              user=request.user,
-              goods=goods,
-              price=price,
-              address=feAddress
-            )
-            return Result(200,'success',{})
-          else:
-            return Result(10010,'不存在该地址',{})
+          Fecart.objects.create(
+            user=request.user,
+            goods=goods,
+            price=price,
+          )
+          return Result(200,'success',{})
     except Exception as e:
-      return Result(500,'error',{})
+      return Result(500,'error',e)
 
 class CartQueryView(APIView):
   permission_classes = (AuTokenPermission,)
@@ -65,10 +54,6 @@ class CartQueryView(APIView):
       if(len(feCart) > 0):
         feCartObj = feCart.get()
         return Result(200,'success',{
-          "address":{
-            "name":feCartObj.address.name,
-            "street":feCartObj.address.street,
-          },
           "goods":feCartObj.goods,
           "price":feCartObj.price,
           "created_at":feCartObj.created_at,
@@ -84,33 +69,23 @@ class CartUpdateView(APIView):
   def post(self, request, format=None):
     try:
       goods = request.data.get("goods", None)
-      address_id = request.data.get("address_id", None)
-      if(goods is None or address_id is None):
+      if(goods is None):
         return Result(500,'参数错误',e)
       else:
         goods_list = json.loads(goods)
         price = 0;
         for o in goods_list:
           price = price + int(o['price'])
-        feAddressObj = FeAddress.objects.filter(
-          user=request.user,
-          id = address_id,
-        )
         fecart = Fecart.objects.filter(
           user=request.user,
         )
         if(len(fecart) < 1):
           return Result(10020,'本用户没有可修改的购物车数据',{})
         else:
-          if(len(feAddressObj) > 0):
-            feAddress = feAddressObj.get()
-            fecart.update(
-              goods=goods,
-              price=price,
-              address=feAddress
-            )
-            return Result(200,'success',{})
-          else:
-            return Result(10010,'不存在该地址',{})
+          fecart.update(
+            goods=goods,
+            price=price,
+          )
+          return Result(200,'success',{})
     except Exception as e:
       return Result(500,'error',str(e))
