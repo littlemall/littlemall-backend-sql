@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'good',
     'session',
     'feuser',
+    'cart',
+    'order',
 ]
 
 MIDDLEWARE = [
