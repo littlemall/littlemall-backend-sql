@@ -43,7 +43,8 @@ class OrderCancelView(APIView):
     try:
       oid = request.data.get("id", None)
       orderRes = Feorder.objects.filter(
-        id=oid
+        id=oid,
+        user=request.user
       )
       if(len(orderRes)>0):
         orderRes.update(
@@ -117,3 +118,26 @@ class orderListView(APIView):
       })
     except Exception as e:
       return Result(500,'error',e)
+
+class orderPayView(APIView):
+  permission_classes = (AuTokenPermission,)
+  def post(self, request, format=None):
+    try:
+      oid = request.data.get("id", None)
+      pay_type = request.data.get("pay_type", 0)
+      orderRes = Feorder.objects.filter(
+            id=oid,
+            user=request.user
+          )
+      if(len(orderRes) < 1):
+        return Result(10010,'订单不存在',{})
+      else:
+        order = orderRes.get()
+        orderRes.update(
+          pay_type=pay_type,
+          status = 100
+        )
+      return Result(200,'success',{})
+    except Exception as e:
+      return Result(500,'error',e)
+
