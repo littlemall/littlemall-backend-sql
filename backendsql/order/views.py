@@ -55,9 +55,65 @@ class OrderCancelView(APIView):
     except Exception as e:
       return Result(500,'error',e)
 
-class queryOrder(APIView):
+class queryOrderView(APIView):
   permission_classes = (AuTokenPermission,)
-  try:
-    pass
-  except Exception as e:
-    return Result(500,'error',e)
+  def get(self, request, format=None):
+    try:
+        orderRes = Feorder.objects.filter(
+          user=request.user
+        )
+        if(len(orderRes) < 1):
+          return Result(10010,'订单不存在',{})
+        else:
+          order = orderRes.get()
+          return Result(200,'success',{
+            "id":order.id,
+            "goods":order.goods,
+            "address":order.address,
+            "oriprice":order.oriprice,
+            "price":order.price,
+            "status":order.status,
+            "pay_type":order.pay_type,
+            "created_at":order.created_at,
+          })
+    except Exception as e:
+      return Result(500,'error',e)
+
+class orderListView(APIView):
+  permission_classes = (AuTokenPermission,)
+  def get(self, request, format=None):
+    try:
+      page = request.GET.get("page", 1)
+      size = request.GET.get("size", 10)
+      total = Feorder.objects.order_by("-created_at").filter(
+        user=request.user
+      )
+      count = len(total)
+      paginator = Paginator(total, size)
+      try:
+        order_list = paginator.page(page)
+      except PageNotAnInteger:
+        address_list = paginator.page(1)
+      except EmptyPage:
+        return Result(200,'success',{
+          "count":   count,
+          "list": [],
+        })
+      res = []
+      for order in order_list:
+        res.append({
+          "id":order.id,
+          "goods":order.goods,
+          "address":order.address,
+          "oriprice":order.oriprice,
+          "price":order.price,
+          "status":order.status,
+          "pay_type":order.pay_type,
+          "created_at":order.created_at,
+        })
+      return Result(200,'success',{
+        "count":   count,
+        "list": res,
+      })
+    except Exception as e:
+      return Result(500,'error',e)
