@@ -16,6 +16,63 @@ from good.models import Goods, GoodsBrand,GoodsCategory
 
 # Create your views here.
 
+class SearchGoodsView(APIView):
+  def get(self, request, format=None):
+    try:
+      name = request.GET.get("name", None)
+      page = request.GET.get("page", 1)
+      size = request.GET.get("size", 10)
+      if(name is None):
+        return Result(10010,'参数错误',{})
+      else:
+        #name__icontains=name
+        goodRes = Goods.objects.filter(
+          name__icontains=name
+        )
+        count = len(goodRes)
+        if(len(goodRes)>0):
+          paginator = Paginator(goodRes, size)
+          try:
+            good_list = paginator.page(page)
+          except PageNotAnInteger:
+            good_list = paginator.page(1)
+          except EmptyPage:
+            return Result(200,'success',{
+              "count": 0,
+              "list": [],
+            })
+          res = []
+          for o in good_list:
+            res.append({
+              "name":o.name,
+              "promotion":o.promotion,
+              "keyword":o.keyword,
+              "unit":o.unit,
+              "tags":o.tags,
+              "base_sale":o.base_sale,
+              "base_click":o.base_click,
+              "base_share":o.base_share,
+              "product_code":o.product_code,
+              "picture":o.picture,
+              "starttime":o.starttime,
+              "validity_period":o.validity_period,
+              "inventory":o.inventory,
+              "sku_ids":o.sku_ids,
+              "photo":o.photo,
+              "created_at":o.created_at
+              })
+          return Result(200,'success',{
+            "count": count,
+            "list": res,
+          })
+        else:
+          return Result(200,'success',{
+            "count": 0,
+            "list": [],
+          })
+    except  Exception as e:
+      return Result(500,'error',str(e))
+
 class GoodsDetailView(APIView):
   def get(self, request, format=None):
     try:
@@ -56,7 +113,6 @@ class GoodsDetailView(APIView):
       else:
         return Result(10020,'商品不存在',{})
     except  Exception as e:
-      raise e
       return Result(500,'error',str(e))
 
 class SessionListView(APIView):
