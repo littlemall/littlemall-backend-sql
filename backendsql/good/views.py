@@ -12,9 +12,52 @@ from backendsql.res import Result
 from backendsql.utils import encrypt_md5
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from session.models import Session, SessionGoodsRelate
-from good.models import Goods
+from good.models import Goods, GoodsBrand,GoodsCategory
 
 # Create your views here.
+
+class GoodsDetailView(APIView):
+  def get(self, request, format=None):
+    try:
+      gid = request.GET.get("id", None)
+      goodRes = Goods.objects.filter(
+        id=gid
+      )
+      if(len(goodRes)>0):
+        goodObj = goodRes.get()
+        categoryIds = goodObj.category_id.split(',')
+        cid = categoryIds[len(categoryIds)-1]
+        goodCategoryObj = GoodsCategory.objects.filter(
+          oid = cid
+        ).get()
+        print(goodCategoryObj)
+        return Result(200,'success',{
+           "name":goodObj.name,
+           "promotion":goodObj.promotion,
+           "keyword":goodObj.keyword,
+           "unit":goodObj.unit,
+           "tags":goodObj.tags,
+           "base_sale":goodObj.base_sale,
+           "base_click":goodObj.base_click,
+           "base_share":goodObj.base_share,
+           "product_code":goodObj.product_code,
+           "picture":goodObj.picture,
+           "starttime":goodObj.starttime,
+           "validity_period":goodObj.validity_period,
+           "inventory":goodObj.inventory,
+           "sku_ids":goodObj.sku_ids,
+           "photo":goodObj.photo,
+           "created_at":goodObj.created_at,
+           "category":goodCategoryObj.name,
+           "category_id":goodCategoryObj.id,
+           "category_level":goodCategoryObj.level,
+           "category_photo":goodCategoryObj.photo,
+        })
+      else:
+        return Result(10020,'商品不存在',{})
+    except  Exception as e:
+      raise e
+      return Result(500,'error',str(e))
 
 class SessionListView(APIView):
   def get(self, request, format=None):
