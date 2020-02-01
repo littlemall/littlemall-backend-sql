@@ -1,0 +1,7 @@
+Performing system checks...
+
+System check identified no issues (0 silenced).
+February 01, 2020 - 14:53:49
+Django version 2.1.3, using settings 'backendsql.settings'
+Starting development server at http://0:7106/
+Quit the server with CONTROL-C.
