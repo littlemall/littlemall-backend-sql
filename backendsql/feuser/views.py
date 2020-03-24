@@ -59,9 +59,10 @@ class LoginView(APIView):
 class RegisterView(APIView):
   def post(self, request, format=None):
     try:
+      name = request.data.get("name", None)
       email = request.data.get("email", None)
       password = request.data.get("password", None)
-      if(email is None or password is None):
+      if(name is None or email is None or password is None):
         return Result(10020,'参数错误',{})
       else:
         # 查询是否存在用户
@@ -73,6 +74,7 @@ class RegisterView(APIView):
         else:
           password = encrypt_md5(password);
           Feuser.objects.create(
+            name=name,
             email=email,
             password=password
           )
