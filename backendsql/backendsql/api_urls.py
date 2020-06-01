@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^cart/', include('cart.urls')),
     url(r'^order/', include('order.urls')),
     url(r'^good/', include('good.urls')),
+    url(r'^session/', include('session.urls')),
 ]
