@@ -360,3 +360,33 @@ Method Not Allowed: /api/user/register/
 [11/Jul/2020 03:17:19] "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
 Not Found: /api/
 [11/Jul/2020 03:17:26] "GET /api/ HTTP/1.1" 404 2749
+Method Not Allowed: /api/user/register/
+[11/Jul/2020 03:24:32] "GET /api/user/register/ HTTP/1.1" 405 5505
+Method Not Allowed: /api/user/register/
+[11/Jul/2020 03:24:33] "GET /api/user/register/ HTTP/1.1" 405 5505
+Method Not Allowed: /api/user/register/
+[11/Jul/2020 03:25:00] "GET /api/user/register/ HTTP/1.1" 405 5505
+Method Not Allowed: /api/user/register/
+[11/Jul/2020 03:25:01] "GET /api/user/register/ HTTP/1.1" 405 5505
+Method Not Allowed: /api/user/register/
+[11/Jul/2020 03:25:01] "GET /api/user/register/ HTTP/1.1" 405 5505
+Not Found: /
+[11/Jul/2020 03:25:03] "GET / HTTP/1.1" 404 2030
+Not Found: /
+[11/Jul/2020 03:25:33] "GET / HTTP/1.1" 404 2030
+Not Found: /
+[11/Jul/2020 03:25:34] "GET / HTTP/1.1" 404 2030
+Not Found: /
+[11/Jul/2020 03:25:34] "GET / HTTP/1.1" 404 2030
+Not Found: /
+[11/Jul/2020 03:25:45] "GET / HTTP/1.1" 404 2030
+Not Found: /favicon.ico
+[11/Jul/2020 03:25:45] "GET /favicon.ico HTTP/1.1" 404 2081
+Not Found: /
+[11/Jul/2020 03:26:48] "GET / HTTP/1.1" 404 2030
+Not Found: /
+[11/Jul/2020 03:26:49] "GET / HTTP/1.1" 404 2030
+Not Found: /
+[11/Jul/2020 03:26:49] "GET / HTTP/1.1" 404 2030
+Not Found: /
+[11/Jul/2020 03:26:59] "GET / HTTP/1.1" 404 2030
