@@ -339,3 +339,24 @@ June 01, 2020 - 09:49:48
 Django version 2.1.3, using settings 'backendsql.settings'
 Starting development server at http://0:7106/
 Quit the server with CONTROL-C.
+Not Found: /api
+[11/Jul/2020 03:15:51] "GET /api HTTP/1.1" 404 2057
+Not Found: /favicon.ico
+[11/Jul/2020 03:15:51] "GET /favicon.ico HTTP/1.1" 404 2081
+Not Found: /
+[11/Jul/2020 03:16:05] "GET / HTTP/1.1" 404 2030
+Method Not Allowed: /api/user/register/
+[11/Jul/2020 03:17:19] "GET /api/user/register/ HTTP/1.1" 405 5505
+[11/Jul/2020 03:17:19] "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121200
+[11/Jul/2020 03:17:19] "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1735
+[11/Jul/2020 03:17:19] "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3385
+[11/Jul/2020 03:17:19] "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+[11/Jul/2020 03:17:19] "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1131
+[11/Jul/2020 03:17:19] "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3597
+[11/Jul/2020 03:17:19] "GET /static/rest_framework/js/jquery-3.3.1.min.js HTTP/1.1" 200 86927
+[11/Jul/2020 03:17:19] "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+[11/Jul/2020 03:17:19] "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+[11/Jul/2020 03:17:19] "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 37045
+[11/Jul/2020 03:17:19] "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+Not Found: /api/
+[11/Jul/2020 03:17:26] "GET /api/ HTTP/1.1" 404 2749
