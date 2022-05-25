@@ -53,7 +53,7 @@ pycodestyle==2.5.0
 pycparser==2.19
 pycryptodomex==3.7.2
 pyee==5.0.0
-PyJWT==1.7.1
+PyJWT==2.4.0
 pylint==2.3.1
 pyOpenSSL==18.0.0
 pyotp==2.2.7
